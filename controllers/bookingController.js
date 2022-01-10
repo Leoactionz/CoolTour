@@ -73,12 +73,7 @@ exports.webhookCheckout = (req, res, next) => {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
 
-  if (
-    event.type === 'checkout.session.completed' ||
-    'checkout.session.async_payment_failed' ||
-    'checkout.session.async_payment_succeeded' ||
-    'checkout.session.expired'
-  ) {
+  if (event.type === 'checkout.session.complete') {
     createBookingCheckout(event.data.object);
     // const { display_items, session } = event.data.object;
     // const tour = display_items[0].client_reference_id;

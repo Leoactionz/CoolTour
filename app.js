@@ -17,6 +17,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controller/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 
 // Start express app
@@ -34,7 +35,6 @@ app.use(cors());
 // Access-Control-Allow-Origin *
 
 app.options('*', cors());
-
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -102,6 +102,13 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter); // applied only to api route
 
+// body needed in string
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
+
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
@@ -127,7 +134,6 @@ app.use(
     ],
   })
 );
-
 
 // Compression ( Working for text only)
 app.use(compression());

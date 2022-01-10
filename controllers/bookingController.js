@@ -64,7 +64,7 @@ exports.webhookCheckout = (req, res, next) => {
 
   let event;
   try {
-    event = stripe.webhooks.constructEvent(
+    const event = stripe.webhooks.constructEvent(
       req.body,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET
@@ -73,15 +73,11 @@ exports.webhookCheckout = (req, res, next) => {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
 
-  if (event.type === 'checkout.session.completed')
+  if (event.type === 'checkout.session.completed') {
     createBookingCheckout(event.data.object);
-  // const { display_items, session } = event.data.object;
-  // const tour = display_items[0].client_reference_id;
-  // const user = (await User.findOne({ email: session.customer_email })).id;
-  // const price = display_items[0].amount / 100;
-  // await Booking.create({ tour, user, price });
 
-  res.status(200).json({ received: true });
+    res.status(200).json({received: true });
+  }
 };
 
 exports.createBooking = factory.createOne(Booking);

@@ -105,7 +105,7 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter); // applied only to api route
 
-// body needed in string
+// Stripe webhook, BEFORE body-parser, because stripe needs the body as stream 
 app.post(
   '/webhook-checkout',
   express.raw({ type: 'application/json' }),
@@ -156,7 +156,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
-app.use('/api/v1/booking', bookingRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 // Handle all the http handlers at once
 app.all('*', (req, res, next) => {

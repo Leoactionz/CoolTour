@@ -2,8 +2,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
-const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
+const factory = require('./handlerFactory');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1) Get the currently booked tour
@@ -73,18 +73,15 @@ exports.webhookCheckout = (req, res, next) => {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
 
-  if (event.type === 'checkout.session.complete') {
+  if (event.type === 'checkout.session.complete')
     createBookingCheckout(event.data.object);
-    // const { display_items, session } = event.data.object;
-    // const tour = display_items[0].client_reference_id;
-    // const user = (await User.findOne({ email: session.customer_email })).id;
-    // const price = display_items[0].amount / 100;
-    // await Booking.create({ tour, user, price });
+  // const { display_items, session } = event.data.object;
+  // const tour = display_items[0].client_reference_id;
+  // const user = (await User.findOne({ email: session.customer_email })).id;
+  // const price = display_items[0].amount / 100;
+  // await Booking.create({ tour, user, price });
 
-    res.status(200).json({
-      received: true,
-    });
-  }
+  res.status(200).json({ received: true });
 };
 
 exports.createBooking = factory.createOne(Booking);

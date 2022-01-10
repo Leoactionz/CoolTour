@@ -10,3 +10,26 @@ folder; 9
 video; 10 {can't generate 400 bad responses with invalid path and value} 
 
 Always Doc..
+
+
+################################################################
+HEROKU DEPLOYMENT
+================
+build.js
+heroku login
+heroku create
+git add .
+git commit -am 'Updated'
+git push heroku main
+
+
+Define env variables
+================
+heroku open // Define env variables before opening
+heroku config:set NODE_ENV=production // other variables
+heroku open // now open
+
+
+RENAME APP
+================
+heroku apps:rename funtours 

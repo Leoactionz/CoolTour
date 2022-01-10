@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 const pug = require('pug');
 const htmlToText = require('html-to-text');
 
-
 module.exports = class Email {
   constructor(user, url) {
     this.to = user.email;
@@ -12,6 +11,18 @@ module.exports = class Email {
   }
 
   newTransport() {
+    if (process.env.NODE_ENV === 'production') {
+      // Sendinblue
+      return nodemailer.createTransport({
+        host: 'smtp-relay.sendinblue.com',
+        port: 587,
+        auth: {
+          user: process.env.SENDINBLUE_USERNAME,
+          pass: process.env.SENDINBLUE_PASSWORD,
+        },
+      });
+    }
+
     // if (process.env.NODE_ENV === 'production') {
     //   // Sendgrid
     //   return nodemailer.createTransport({
@@ -68,27 +79,27 @@ module.exports = class Email {
 };
 
 // const sendEmail = async (options) => {
-  // 1) Create a transporter
+// 1) Create a transporter
 
-  // // Using Gmail
-  // const transporter = nodemailer.createTransport({
-  //   service: 'Gmail',
-  //   auth: {
-  //     user: process.env.EMAIL_GMAIL_USERNAME,
-  //     pass: process.env.EMAIL_GMAIL_PASSWORD,
-  //   },
-  //   // Activate in gmail 'less secure app' option
-  // });
+// // Using Gmail
+// const transporter = nodemailer.createTransport({
+//   service: 'Gmail',
+//   auth: {
+//     user: process.env.EMAIL_GMAIL_USERNAME,
+//     pass: process.env.EMAIL_GMAIL_PASSWORD,
+//   },
+//   // Activate in gmail 'less secure app' option
+// });
 
-  // 2) Define the email options
-  // const mailOptions = {
-  //   from: 'Leonard Ugorji <admin@tryout.com>',
-  //   to: options.email,
-  //   subject: options.subject,
-  //   text: options.message,
-  //   // html:
-  // };
+// 2) Define the email options
+// const mailOptions = {
+//   from: 'Leonard Ugorji <admin@tryout.com>',
+//   to: options.email,
+//   subject: options.subject,
+//   text: options.message,
+//   // html:
+// };
 
-  // 3) Actually send the email
-  // await transporter.sendMail(mailOptions);
+// 3) Actually send the email
+// await transporter.sendMail(mailOptions);
 // };

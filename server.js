@@ -42,11 +42,21 @@ const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
 
+// Shutting server gracefully instead of abruptly
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);
   console.log('UNHANDLED REJECTION! 💥 Shutting down...');
   server.close(() => {
     // Shutdown gracefully
     process.exit(1);
+  });
+});
+
+// Heroku health check
+process.on('SIGTERM', () => {
+  console.log('👋 SIGTERM RECEIVED. Shutting down gracefully');
+  server.close(() => {
+    // Shutdown gracefully
+    console.log('💥 Process terminated!');
   });
 });

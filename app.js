@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 
@@ -117,13 +118,17 @@ app.use(
   })
 );
 
+
+// Compression ( Working for text only)
+app.use(compression());
+
 // Custom middleware stack needed before the route handler
 
 // Test middleware
 // never forget to use next in all your middlewares
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  // console.log(req.cookies); 
+  // console.log(req.cookies);
   next(); // response cycle will be stuck if we don't call next here for the middleware
 });
 

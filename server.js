@@ -25,7 +25,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    // console.log(con.connections);
+    // console.log(con.connections); 
     console.log('DB connection established');
   });
 // .catch(() => console.log('Error connecting to DB'));

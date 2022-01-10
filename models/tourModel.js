@@ -175,13 +175,14 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
-tourSchema.post(/^find/, function (docs, next) {
-  this.find({ secretTour: { $ne: true } });
+// MIDDLEWARE TURNED OFF (Only use to test the post find middleware)
+// tourSchema.post(/^find/, function (docs, next) {
+//   this.find({ secretTour: { $ne: true } });
 
-  console.log(`Query took ${Date.now() - this.start} milliseconds`);
-  // console.log(docs);
-  next();
-});
+//   console.log(`Query took ${Date.now() - this.start} milliseconds`);
+//   // console.log(docs);
+//   next();
+// });
 
 // AGGREGATION MIDDLEWARE
 // tourSchema.pre('aggregate', function (next) {

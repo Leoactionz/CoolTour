@@ -1,0 +1,12 @@
+There four types of middleware - 
+- Document
+- Query
+- Aggregate
+- Model Middleware
+
+
+Stopped at;
+folder; 9 
+video; 10 {can't generate 400 bad responses with invalid path and value} 
+
+Always Doc..

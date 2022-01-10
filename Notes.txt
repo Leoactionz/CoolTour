@@ -33,3 +33,10 @@ heroku open // now open
 RENAME APP
 ================
 heroku apps:rename funtours 
+
+HEROKU DYNO
+================
+heroku ps
+heroku ps:restart
+
+heroku logs --tail

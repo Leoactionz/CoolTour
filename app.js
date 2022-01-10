@@ -17,6 +17,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
+// Start express app
 // Releasing methods from express and storing into app
 const app = express();
 

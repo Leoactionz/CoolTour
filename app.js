@@ -61,9 +61,7 @@ app.use('/api', limiter); // applied only to api route
 // Stripe webhook, BEFORE body-parser, because stripe needs the body as stream
 app.post(
   '/webhook-checkout',
-  console.log(' 💥 Entered middleware 💥'),
   express.raw({ type: 'application/json' }),
-  console.log('  💥 💥 💥 Passed express raw '),
   bookingController.webhookCheckout
 );
 

@@ -59,6 +59,7 @@ const createBookingCheckout = async (session) => {
   const user = (await User.findOne({ email: session.customer_email })).id; // getting user id through user.email
   const price = session.display_items[0].amount / 100;
   await Booking.create({ tour, user, price });
+  console.log('created 💥💥 BookingCheckout')
 };
 
 exports.webhookCheckout = (req, res, next) => {
@@ -71,9 +72,7 @@ exports.webhookCheckout = (req, res, next) => {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET
     );
-    console.log(
-      '💥💥 Entered 💥 💥 💥 💥 webhookCheckout 💥💥 '
-    );
+    console.log(event);
   } catch (err) {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }

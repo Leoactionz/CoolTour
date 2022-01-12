@@ -149,7 +149,7 @@ app.use((req, res, next) => {
   next(); // response cycle will be stuck if we don't call next here for the middleware
 });
 
-// 3. ROUTES // Route mounting API
+// 3. ROUTES // Route mounting into API 
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);

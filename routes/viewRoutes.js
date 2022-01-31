@@ -1,13 +1,13 @@
 const express = require('express');
 const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
-// const bookingController = require('../controllers/bookingController');
+const bookingController = require('../controllers/bookingController'); // Without webhook turn on this
 
 const router = express.Router();
 
 router.get(
   '/',
-  // bookingController.createBookingCheckout,
+  bookingController.createBookingCheckout, // Without webhook turn on this
   authController.isLoggedIn,
   viewsController.getOverview
 );

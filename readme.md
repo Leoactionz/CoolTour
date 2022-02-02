@@ -1,6 +1,3 @@
-# CoolTour application
-
-Built using modern technologies: node.js, express, mongoDB, mongoose and mapbox etc. 🔥🔥🔥
 
 
 <h1 align="center">
@@ -11,7 +8,7 @@ Built using modern technologies: node.js, express, mongoDB, mongoose and mapbox 
   <br>
 </h1>
 
-<h4 align="center">An awesome tour booking site built on top of <a href="https://nodejs.org/en/" target="_blank">NodeJS</a>.</h4>
+<h4 align="center">Super fantastic tour booking site built on top of <a href="https://nodejs.org/en/" target="_blank">NodeJS</a>.</h4>
 
  <p align="center">
  <a href="#deployed-version">Demo</a> •

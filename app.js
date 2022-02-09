@@ -105,7 +105,7 @@ app.use('/api', limiter); // applied only to api route
 
 // With webhook turn on this 
 
-// Stripe webhook, BEFORE body-parser, because stripe needs the body as stream
+// Stripe webhook, BEFORE body-parser, because stripe needs the body as stream --==
 app.post(
   '/webhook-checkout',
   express.raw({ type: 'application/json' }),

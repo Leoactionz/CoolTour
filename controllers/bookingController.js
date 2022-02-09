@@ -83,7 +83,7 @@ exports.webhookCheckout = (req, res, next) => {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
 
-  console.log(' Before IF loop');
+  console.log(' Before IF loop..');
   if (event.type === 'checkout.session.completed') {
     createBookingCheckout(event.data.object);
     console.log(' Create booking checkout call ');

@@ -63,7 +63,9 @@ const createBookingCheckout = async (session) => {
   console.log(tour);
   console.log(user);
   console.log(price);
-  await Booking.create({ tour, user, price });
+  const booking = await Booking.create({ tour, user, price });
+  console.log(booking);
+  // await Booking.create({ tour, user, price });
 
   res.redirect(req.originalUrl);
 };
